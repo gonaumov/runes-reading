@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect , MapDispatchToProps} from 'react-redux'
+import { withRouter, RouteComponentProps } from "react-router-dom"
 import { setSelectedSpread } from '../actions/actions'
 import  selectedSpread from '../selectors/selected-spread'
+import { StaticContext } from 'react-router';
 
 interface StateProps {
   spreads: Array<Spread>
@@ -12,9 +14,9 @@ interface DispatchProps {
   setSelectedSpread: typeof setSelectedSpread
 }
 
-type Props = StateProps & DispatchProps
+type Props = StateProps & DispatchProps & RouteComponentProps<any, StaticContext, any>
 
-const App: React.FC<Props> = (props: Props) => {
+const Home: React.FC<Props> = (props: Props) => {
   const { spreads, setSelectedSpread, selectedSpread } = props
   return (
     <div className="App">
@@ -31,6 +33,12 @@ const App: React.FC<Props> = (props: Props) => {
           Learn React
         </a>
       </header>
+      <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        if(selectedSpread === null) 
+        return
+        props.history.push('/answer/' + selectedSpread.spread_id)
+      }}>
       <select 
         defaultValue=''
         onChange={(e: React.ChangeEvent<HTMLSelectElement>) => 
@@ -46,6 +54,11 @@ const App: React.FC<Props> = (props: Props) => {
             </option>))
         }
       </select>
+      <textarea required>
+
+      </textarea>
+      <input type="submit" value="Cast stones"></input>
+      </form>
       {selectedSpread && selectedSpread.spread_description}
     </div>
   );
@@ -66,4 +79,4 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: any
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Home))
