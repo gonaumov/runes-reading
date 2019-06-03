@@ -1,26 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import Home from "./components/Home"
+import Answer from "./components/Answer"
+import { Store } from 'redux';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = ({store}: {store: Store<State>}) => (
+  <Provider store={store}>
+    <Router>
+      <Switch>
+        <Route path="/answer/:spreadId" component={Answer} />
+        <Route exact component={Home} />
+      </Switch>
+    </Router>
+  </Provider>
+)
 
 export default App;
