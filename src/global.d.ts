@@ -17,5 +17,5 @@ interface Spread {
 interface State {
   runes: Array<Rune>
   spreads: Array<Spread>
-  selected_spread: 5 | 4 | 3 | 1 | null
+  selected_spread: number | null
 }
