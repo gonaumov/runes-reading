@@ -1,3 +1,9 @@
+# Runic oracle
+
+This is a runic oracle which I have developer with ReactJS and Redux. 
+[Here](https://gonaumov.github.io/runes-reading/) you can see it in action.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
