@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect , MapDispatchToProps} from 'react-redux'
 import { withRouter, RouteComponentProps } from "react-router-dom"
 import { setSelectedSpread } from '../actions/actions'
@@ -14,10 +14,19 @@ interface DispatchProps {
   setSelectedSpread: typeof setSelectedSpread
 }
 
-type Props = StateProps & DispatchProps & RouteComponentProps<any, StaticContext, any>
+type Props = StateProps & DispatchProps & RouteComponentProps<{spreadId: string | undefined}, StaticContext, {}>
 
 const Home: React.FC<Props> = (props: Props) => {
-  const { spreads, setSelectedSpread, selectedSpread } = props
+  const { spreads, setSelectedSpread, selectedSpread, match } = props
+
+  useEffect(() => {
+    if(match.params.spreadId) {
+      setSelectedSpread(match.params.spreadId)
+    } else {
+      setSelectedSpread('')
+    }
+  }, [match,setSelectedSpread])
+
   return (
     <div className="App">
       <header className="App-header">
@@ -42,9 +51,9 @@ const Home: React.FC<Props> = (props: Props) => {
       <select 
         defaultValue=''
         onChange={(e: React.ChangeEvent<HTMLSelectElement>) => 
-          e.target.value !== '' && setSelectedSpread(e.target.value)}
+         props.history.push('/'.concat(e.target.value !== '' ? e.target.value : ''))}
       >
-      <option value=''>Select your spread</option>
+      <option value={selectedSpread ? selectedSpread.spread_id : ''}>Select your spread</option>
         {spreads.map(
           (spread: Spread) =>
             (<option
@@ -54,9 +63,7 @@ const Home: React.FC<Props> = (props: Props) => {
             </option>))
         }
       </select>
-      <textarea required>
-
-      </textarea>
+      <textarea required rows={10} cols={10}></textarea>
       <input type="submit" value="Cast stones"></input>
       </form>
       {selectedSpread && selectedSpread.spread_description}
