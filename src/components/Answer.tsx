@@ -18,7 +18,7 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps & RouteComponentProps<{spreadId: string | undefined}, StaticContext, {}>
 
 const Answer: React.FC<Props> = (props: Props) => {
-  const { history, selectedRunes , setSelectedSpread, match} = props
+  const { history, selectedRunes , selectedSpread, setSelectedSpread, match} = props
 
   useEffect(() => {
     if(match.params.spreadId) {
@@ -29,24 +29,17 @@ const Answer: React.FC<Props> = (props: Props) => {
   }, [match,setSelectedSpread])
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-         Answers Learn React
-        </a>
-      </header>
+    <>
+      <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <h5 className="my-0 mr-md-auto font-weight-normal">
+        This is your answer:
+      </h5>
+    </div>
       <div>
         {selectedRunes.map(
           (rune: Rune) =>
             <img 
+              className="img-thumbnail" 
               title={rune.rune_name} 
               key={rune.rune_id} 
               alt={rune.rune_name} 
@@ -55,8 +48,8 @@ const Answer: React.FC<Props> = (props: Props) => {
         )
         }
       </div>
-      <button onClick={() => history.push('/')}>Ask another question</button>
-    </div>
+      <button className="btn btn-primary" onClick={() => history.push('/' + (selectedSpread !== null ? selectedSpread.spread_id : ''))}>Ask another question</button>
+    </>
   );
 }
 

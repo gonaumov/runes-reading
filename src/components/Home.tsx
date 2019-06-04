@@ -28,32 +28,31 @@ const Home: React.FC<Props> = (props: Props) => {
   }, [match,setSelectedSpread])
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+     <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <h5 className="my-0 mr-md-auto font-weight-normal">
+        A simple runic oracle
+      </h5>
+    </div>
+    
       <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if(selectedSpread === null) 
         return
         props.history.push('/answer/' + selectedSpread.spread_id)
       }}>
-      <select 
-        defaultValue=''
+        <div className="form-group">
+        <label htmlFor='select_spread'>
+          Please select spread
+          </label>
+      <select
+        className='form-control' 
+        id='select_spread'
+        value={selectedSpread ? selectedSpread.spread_id : ''}
         onChange={(e: React.ChangeEvent<HTMLSelectElement>) => 
          props.history.push('/'.concat(e.target.value !== '' ? e.target.value : ''))}
       >
-      <option value={selectedSpread ? selectedSpread.spread_id : ''}>Select your spread</option>
+      <option value=''>Select your spread</option>
         {spreads.map(
           (spread: Spread) =>
             (<option
@@ -63,11 +62,19 @@ const Home: React.FC<Props> = (props: Props) => {
             </option>))
         }
       </select>
-      <textarea required rows={10} cols={10}></textarea>
-      <input type="submit" value="Cast stones"></input>
+      </div>
+      <div className='form-group'>
+      <label htmlFor="question">
+        Please type your question
+        </label>
+      <textarea id="question" required className='form-control'></textarea>
+      </div>
+      <input className="btn btn-primary" type="submit" value="Cast stones"></input>
       </form>
+      <div className="text-justify">
       {selectedSpread && selectedSpread.spread_description}
-    </div>
+      </div>
+    </>
   );
 }
 
