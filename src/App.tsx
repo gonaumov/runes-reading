@@ -7,7 +7,7 @@ import { Store } from 'redux';
 
 const App = ({store}: {store: Store<State>}) => (
   <Provider store={store}>
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path="/answer/:spreadId(\d+)" component={Answer} />
         <Route path="/:spreadId(\d+)?" component={Home} />
