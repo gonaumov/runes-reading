@@ -40,7 +40,13 @@ const Home: React.FC<Props> = (props: Props) => {
         </div>
       </div>
     </div>
-    
+    {selectedSpread ? 
+        <div className="text-justify">
+        <div className='font-weight-bold'>
+          Spread description: 
+        </div>
+        {selectedSpread.spread_description}
+        </div> : null}
       <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if(selectedSpread === null) 
@@ -78,9 +84,6 @@ const Home: React.FC<Props> = (props: Props) => {
       </div>
       <input className="btn btn-primary" type="submit" value="Cast stones"></input>
       </form>
-      <div className="text-justify">
-      {selectedSpread && selectedSpread.spread_description}
-      </div>
     </div>
   );
 }
