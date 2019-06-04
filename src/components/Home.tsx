@@ -28,11 +28,16 @@ const Home: React.FC<Props> = (props: Props) => {
   }, [match,setSelectedSpread])
 
   return (
-    <>
+    <div className='container'>
      <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-      <h5 className="my-0 mr-md-auto font-weight-normal">
+      <h1 className="my-0 mr-md-auto font-weight-normal">
         A simple runic oracle
-      </h5>
+      </h1>
+      <div className='row'>
+        <div className='cell'>
+          <img src='Valknut.png' alt='Valknut'/>
+        </div>
+      </div>
     </div>
     
       <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
@@ -74,7 +79,7 @@ const Home: React.FC<Props> = (props: Props) => {
       <div className="text-justify">
       {selectedSpread && selectedSpread.spread_description}
       </div>
-    </>
+    </div>
   );
 }
 

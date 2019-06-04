@@ -17,6 +17,156 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps & RouteComponentProps<{spreadId: string | undefined}, StaticContext, {}>
 
+const renderRune = (rune: Rune | undefined): JSX.Element | null => {
+  if (typeof rune === 'undefined') {
+    return null
+  }
+
+  return (
+  <>
+  <p>
+   {rune.rune_name}
+  </p>  
+  <img
+    title={rune.rune_name}
+    key={rune.rune_id}
+    alt={rune.rune_name}
+    src={'../images/' + rune.rune_image}
+  />
+  <p>
+   {rune.rune_meaning}
+  </p>  
+  </>
+  )
+}
+
+const renderSingle = (runes: Array<Rune>): JSX.Element => {
+  return (
+    <>
+      <div className="row">
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+      </div>
+    </>
+  )
+}
+
+const renderNorn = (runes: Array<Rune>): JSX.Element => {
+  return (
+    <>
+      <div className="row">
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+      </div>
+    </>
+  )
+}
+
+const renderFork = (runes: Array<Rune>): JSX.Element => {
+  return (
+    <>
+      <div className="row">
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+        <div className="col">
+        </div>
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+        </div>
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+        <div className="col">
+        </div>
+      </div>
+    </>
+  )
+}
+
+const renderDiamond = (runes: Array<Rune>): JSX.Element => {
+  return (
+    <>
+      <div className="row">
+        <div className="col">
+        </div>
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+        <div className="col">
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+        <div className="col">
+        </div>
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+        </div>
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+        <div className="col">
+        </div>
+      </div>
+    </>
+  )
+}
+
+const renderCross = (runes: Array<Rune>): JSX.Element => {
+  return (
+    <>
+      <div className="row">
+        <div className="col">
+        </div>
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+        <div className="col">
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+        </div>
+        <div className="col">
+          {renderRune(runes.shift())}
+        </div>
+        <div className="col">
+        </div>
+      </div>
+    </>
+  )
+}
+
 const Answer: React.FC<Props> = (props: Props) => {
   const { history, selectedRunes , selectedSpread, setSelectedSpread, match} = props
 
@@ -29,27 +179,21 @@ const Answer: React.FC<Props> = (props: Props) => {
   }, [match,setSelectedSpread])
 
   return (
-    <>
+    <div className="container">
       <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
       <h5 className="my-0 mr-md-auto font-weight-normal">
         This is your answer:
       </h5>
     </div>
-      <div>
-        {selectedRunes.map(
-          (rune: Rune) =>
-            <img 
-              className="img-thumbnail" 
-              title={rune.rune_name} 
-              key={rune.rune_id} 
-              alt={rune.rune_name} 
-              src={'../images/' + rune.rune_image} 
-            />
-        )
-        }
+      <div className="container">
+        {selectedSpread && selectedSpread.spread_name === 'Cross' && renderCross(selectedRunes)}
+        {selectedSpread && selectedSpread.spread_name === 'Diamond' && renderDiamond(selectedRunes)}
+        {selectedSpread && selectedSpread.spread_name === 'Fork' && renderFork(selectedRunes)}
+        {selectedSpread && selectedSpread.spread_name === 'Norn' && renderNorn(selectedRunes)}
+        {selectedSpread && selectedSpread.spread_name === 'Single' && renderSingle(selectedRunes)}
       </div>
       <button className="btn btn-primary" onClick={() => history.push('/' + (selectedSpread !== null ? selectedSpread.spread_id : ''))}>Ask another question</button>
-    </>
+    </div>
   );
 }
 
