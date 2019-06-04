@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
+import { Dispatch, Action } from 'redux'
 import { withRouter, RouteComponentProps } from "react-router-dom"
 import { connect, MapDispatchToProps } from 'react-redux'
 import { setSelectedSpread } from '../actions/actions'
@@ -204,7 +205,7 @@ const mapStateToProps = (state: State): StateProps => {
   }
 }
 
-const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: any) => {
+const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: Dispatch<Action>) => {
   return {
       setSelectedSpread: (spreadNumber: string) => {
           return dispatch(setSelectedSpread(spreadNumber))
