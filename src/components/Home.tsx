@@ -51,6 +51,7 @@ const Home: React.FC<Props> = (props: Props) => {
           Please select spread
           </label>
       <select
+        required
         className='form-control' 
         id='select_spread'
         value={selectedSpread ? selectedSpread.spread_id : ''}
