@@ -1,0 +1,8 @@
+headers:
+  generator: "<%= Slideshow.generator %>"
+  author: Georgi Naumov
+  email: gonaumov@gmail.com
+  title: Developing runecaster (runic oracle) with ReacJS, TypeScript and Redux.
+  subtitle: "" 
+  date: "<%= Date.today %>"
+
