@@ -186,6 +186,7 @@ const Answer: React.FC<Props> = (props: Props) => {
         This is your answer:
       </h5>
     </div>
+    <button className="btn btn-primary" onClick={() => history.push('/' + (selectedSpread !== null ? selectedSpread.spread_id : ''))}>Ask another question</button>
       <div className="container">
         {selectedSpread && selectedSpread.spread_name === 'Cross' && renderCross(selectedRunes)}
         {selectedSpread && selectedSpread.spread_name === 'Diamond' && renderDiamond(selectedRunes)}
@@ -193,7 +194,6 @@ const Answer: React.FC<Props> = (props: Props) => {
         {selectedSpread && selectedSpread.spread_name === 'Norn' && renderNorn(selectedRunes)}
         {selectedSpread && selectedSpread.spread_name === 'Single' && renderSingle(selectedRunes)}
       </div>
-      <button className="btn btn-primary" onClick={() => history.push('/' + (selectedSpread !== null ? selectedSpread.spread_id : ''))}>Ask another question</button>
     </div>
   );
 }
