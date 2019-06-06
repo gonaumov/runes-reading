@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import { createStore } from "redux";
 import initialState from './initialState'
 import runes from './reducers/runes'
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import '../node_modules/bootswatch/dist/darkly/bootstrap.min.css'
 
 const store = createStore(runes, initialState,
     (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
