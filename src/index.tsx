@@ -2,13 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import createSagaMiddleware from 'redux-saga'
 import { devToolsEnhancer } from 'redux-devtools-extension';
 import initialState from './initialState'
 import runes from './reducers/runes'
 import '../node_modules/bootswatch/dist/darkly/bootstrap.min.css'
+import rootSaga from './sagas'
 
-const store = createStore(runes, initialState, devToolsEnhancer({}))
+const sagaMiddleware = createSagaMiddleware()
+
+const store = createStore(
+    runes, initialState, 
+    compose(applyMiddleware(sagaMiddleware), devToolsEnhancer({})))
+
+sagaMiddleware.run(rootSaga)    
 
 ReactDOM.render(<App store={store} />, 
                 document.getElementById('root'));

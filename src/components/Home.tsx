@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Dispatch, Action } from 'redux'
 import { connect , MapDispatchToProps} from 'react-redux'
 import { withRouter, RouteComponentProps } from "react-router-dom"
-import { setSelectedSpread } from '../actions/actions'
+import { setSelectedSpread, getRunes, getSpreads } from '../actions/actions'
 import  selectedSpread from '../selectors/selected-spread'
 import { StaticContext } from 'react-router';
 
@@ -12,21 +12,32 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  setSelectedSpread: typeof setSelectedSpread
+  setSelectedSpread: typeof setSelectedSpread,
+  getRunes: typeof getRunes,
+  getSpreads: typeof getSpreads
 }
 
 type Props = StateProps & DispatchProps & RouteComponentProps<{spreadId: string | undefined}, StaticContext, {}>
 
 const Home: React.FC<Props> = (props: Props) => {
-  const { spreads, setSelectedSpread, selectedSpread, match } = props
+  const { 
+              spreads, 
+    setSelectedSpread, 
+       selectedSpread, 
+                match,
+                getRunes, 
+                getSpreads
+  } = props
 
   useEffect(() => {
     if(match.params.spreadId) {
       setSelectedSpread(match.params.spreadId)
     } else {
       setSelectedSpread('')
+      getRunes()
+      getSpreads()
     }
-  }, [match,setSelectedSpread])
+  }, [match,setSelectedSpread,getRunes,getSpreads])
 
   return (
     <div className='container'>
@@ -99,7 +110,9 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: Dis
   return {
       setSelectedSpread: (spreadNumber: string) => {
           return dispatch(setSelectedSpread(spreadNumber))
-      }
+      },
+      getRunes: () => (dispatch(getRunes())),
+      getSpreads: () => (dispatch(getSpreads()))
   }
 }
 
