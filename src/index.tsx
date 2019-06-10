@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { createStore } from "redux";
+import { devToolsEnhancer } from 'redux-devtools-extension';
 import initialState from './initialState'
 import runes from './reducers/runes'
 import '../node_modules/bootswatch/dist/darkly/bootstrap.min.css'
 
-const store = createStore(runes, initialState,
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(runes, initialState, devToolsEnhancer({}))
 
 ReactDOM.render(<App store={store} />, 
                 document.getElementById('root'));
