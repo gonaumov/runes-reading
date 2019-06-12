@@ -30,7 +30,7 @@ const Home: React.FC<Props> = (props: Props) => {
   } = props
 
   useEffect(() => {
-    if(match.params.spreadId) {
+    if (match.params.spreadId) {
       setSelectedSpread(match.params.spreadId)
       getRunes()
       getSpreads()

@@ -9,7 +9,7 @@ export function* onFetchRunes() {
           const responseBody = yield call([response,'json']);
           yield put(setRunes(responseBody));
       } catch (e) {
-        yield put({type: "FETCH_FAILED", e})
+        yield put({type: actionTypes.RUNES_REQUEST_FAILED, e})
       }
     });
   }
@@ -21,7 +21,7 @@ export function* onFetchRunes() {
           const responseBody = yield call([response,'json']);
           yield put(setSpreads(responseBody));
       } catch (e) {
-          yield put({type: "FETCH_FAILED", e})
+          yield put({type: actionTypes.SPREADS_REQUEST_FAILED, e})
       }
     });
   }
