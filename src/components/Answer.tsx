@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Dispatch, Action } from 'redux'
 import { withRouter, RouteComponentProps } from "react-router-dom"
 import { connect, MapDispatchToProps } from 'react-redux'
-import { setSelectedSpread } from '../actions/actions'
+import { setSelectedSpread, getRunes, getSpreads } from '../actions/actions'
 import selectedRunes from '../selectors/selected-runes'
 import selectedSpread from '../selectors/selected-spread'
 import { StaticContext } from 'react-router'
@@ -14,6 +14,8 @@ interface StateProps {
 
 interface DispatchProps {
   setSelectedSpread: typeof setSelectedSpread
+  getRunes: typeof getRunes
+  getSpreads: typeof getSpreads
 }
 
 type Props = StateProps & DispatchProps & RouteComponentProps<{spreadId: string | undefined}, StaticContext, {}>
@@ -169,15 +171,28 @@ const renderCross = (runes: Array<Rune>): JSX.Element => {
 }
 
 const Answer: React.FC<Props> = (props: Props) => {
-  const { history, selectedRunes , selectedSpread, setSelectedSpread, match} = props
+  const { 
+          history, 
+    selectedRunes, 
+   selectedSpread, 
+   setSelectedSpread, 
+            match, 
+            getRunes, 
+            getSpreads
+  } = props
 
   useEffect(() => {
+    if (selectedRunes.length === 0) {
+      getSpreads()
+      getRunes()
+    }
+
     if(match.params.spreadId) {
       setSelectedSpread(match.params.spreadId)
     } else {
       setSelectedSpread('')
     }
-  }, [match,setSelectedSpread])
+  }, [match,setSelectedSpread, selectedSpread, getRunes, getSpreads, selectedRunes])
 
   return (
     <div className="container">
@@ -209,7 +224,9 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: Dis
   return {
       setSelectedSpread: (spreadNumber: string) => {
           return dispatch(setSelectedSpread(spreadNumber))
-      }
+      },
+      getSpreads: () => (dispatch(getSpreads())),
+      getRunes: () =>   (dispatch(getRunes())),
   }
 }
 

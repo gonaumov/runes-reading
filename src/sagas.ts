@@ -5,7 +5,7 @@ import * as actionTypes from './constants/ActionTypes'
 export function* onFetchRunes() {
     yield takeLatest(actionTypes.GET_RUNES, function* fetchRecords() {
       try {
-          const response = yield call(fetch, 'data/data.json');
+          const response = yield call(fetch, '../data/data.json');
           const responseBody = yield call([response,'json']);
           yield put(setRunes(responseBody));
       } catch (e) {
@@ -17,7 +17,7 @@ export function* onFetchRunes() {
   export function* onFetchSpreads() {
     yield takeLatest(actionTypes.GET_SPREADS, function* fetchRecords() {
       try {
-          const response = yield call(fetch, 'data/spreads.json');
+          const response = yield call(fetch, '../data/spreads.json');
           const responseBody = yield call([response,'json']);
           yield put(setSpreads(responseBody));
       } catch (e) {
