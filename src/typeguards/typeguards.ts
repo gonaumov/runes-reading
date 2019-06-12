@@ -17,7 +17,7 @@ export const isArrayFromSpreads =
                 Object.keys(spread).every((item) => (
                     ["spread_id",
                         "spread_name",
-                        "spred_description",
+                        "spread_description",
                         "spread_runes_count"]
                         .includes(item)))))
     }

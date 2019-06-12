@@ -6,11 +6,10 @@ export function* onFetchRunes() {
     yield takeLatest(actionTypes.GET_RUNES, function* fetchRecords() {
       try {
           const response = yield call(fetch, 'data/data.json');
-          const responseBody = yield call(response.json());
-          console.log(responseBody);
+          const responseBody = yield call([response,'json']);
           yield put(setRunes(responseBody));
       } catch (e) {
-          return;
+        yield put({type: "FETCH_FAILED", e})
       }
     });
   }
@@ -22,8 +21,7 @@ export function* onFetchRunes() {
           const responseBody = yield call([response,'json']);
           yield put(setSpreads(responseBody));
       } catch (e) {
-          console.log(e.message)
-          return;
+          yield put({type: "FETCH_FAILED", e})
       }
     });
   }

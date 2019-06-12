@@ -14,7 +14,10 @@ const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(
     runes, initialState, 
-    compose(applyMiddleware(sagaMiddleware), devToolsEnhancer({})))
+    compose(
+        applyMiddleware(sagaMiddleware), 
+        devToolsEnhancer({}))
+)
 
 sagaMiddleware.run(rootSaga)    
 

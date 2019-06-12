@@ -32,13 +32,14 @@ const Home: React.FC<Props> = (props: Props) => {
   useEffect(() => {
     if(match.params.spreadId) {
       setSelectedSpread(match.params.spreadId)
+      getRunes()
+      getSpreads()
     } else {
       setSelectedSpread('')
       getRunes()
       getSpreads()
     }
   }, [match,setSelectedSpread,getRunes,getSpreads])
-
   return (
     <div className='container'>
      <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom box-shadow">
