@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/runes-reading/precache-manifest.3a19f5e219d9a0c84b650872b6f08bca.js"
+  "/runes-reading/precache-manifest.d19c69c039f81857031b779e909de629.js"
 );
 
 self.addEventListener('message', (event) => {
