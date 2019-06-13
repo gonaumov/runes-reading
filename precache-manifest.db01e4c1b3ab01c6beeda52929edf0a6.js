@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "815e6c2abc2f0f208e252c00b960d0d7",
+    "revision": "d0e56cc730d8350de98106ed0e6dc28e",
     "url": "/runes-reading/index.html"
   },
   {
