@@ -1,6 +1,8 @@
 import { takeEvery, put, putResolve, call, all, select } from 'redux-saga/effects'
 import { setRunes, setSpreads } from './actions/actions'
 import * as actionTypes from './constants/ActionTypes'
+import { AnyAction } from "redux";
+import { isInitAction } from './typeguards/typeguards';
 
 export function* onFetchRunes() {
     yield takeEvery(actionTypes.GET_RUNES, function* fetchRecords() {
@@ -33,11 +35,11 @@ export function* onFetchRunes() {
   }
 
   export function* onInit() {
-    yield takeEvery(actionTypes.INIT, function* init(action) {
+    yield takeEvery(actionTypes.INIT, function* init(action: AnyAction) {
        yield putResolve({type: actionTypes.GET_SPREADS})
        yield putResolve({type: actionTypes.GET_RUNES})
        yield put({type: actionTypes.SET_SELECTED_SPREAD, payload: {
-        selected_spread: parseInt((action as any).spread_number, 10)
+        selected_spread: parseInt(isInitAction(action) ? action.spread_number : '', 10)
        }})
     });
   }

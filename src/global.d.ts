@@ -12,8 +12,6 @@ interface Spread {
   spread_runes_count: number
 }
 
-
-
 interface State {
   runes: Array<Rune>
   spreads: Array<Spread>

@@ -1,3 +1,10 @@
+import { AnyAction } from "redux";
+
+
+interface InitAction extends AnyAction {
+    spread_number: string
+}
+
 export const isArrayFromRunes =
     (input: Array<object>): input is Array<Rune> => {
         return input instanceof Array &&
@@ -21,3 +28,7 @@ export const isArrayFromSpreads =
                         "spread_runes_count"]
                         .includes(item)))))
     }
+
+export const isInitAction = (input: AnyAction): input is InitAction => {
+    return typeof input.spread_number === 'string'
+}
