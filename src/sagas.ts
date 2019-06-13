@@ -7,7 +7,7 @@ export function* onFetchRunes() {
       try {
           const runes: Array<Rune> = yield select((state: State) => state.runes)
           if (runes.length === 0) {
-            const response = yield call(fetch, '../data/data.json');
+            const response = yield call(fetch, '/data/data.json');
             const responseBody = yield call([response,'json']);
             yield put(setRunes(responseBody));
           }
@@ -22,7 +22,7 @@ export function* onFetchRunes() {
       try {
           const spreads: Array<Spread> = yield select((state: State) => state.spreads)
           if (spreads.length === 0) {
-            const response = yield call(fetch, '../data/spreads.json');
+            const response = yield call(fetch, '/data/spreads.json');
             const responseBody = yield call([response,'json']);
             yield put(setSpreads(responseBody));
           }
