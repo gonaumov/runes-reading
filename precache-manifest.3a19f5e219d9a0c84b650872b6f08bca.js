@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d0e56cc730d8350de98106ed0e6dc28e",
+    "revision": "e7d6ff712b4e94f62d476ca60581891d",
     "url": "/runes-reading/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/runes-reading/static/js/2.29b87cb5.chunk.js"
   },
   {
-    "revision": "3b67c375cb262b504b16",
-    "url": "/runes-reading/static/js/main.f58ebe04.chunk.js"
+    "revision": "55b3c901dde08080db6c",
+    "url": "/runes-reading/static/js/main.6d8c7395.chunk.js"
   },
   {
     "revision": "d66895bff7e87d19430e",
