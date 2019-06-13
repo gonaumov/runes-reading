@@ -11,6 +11,11 @@ export const getRunes = () => ({
     type: actionTypes.GET_RUNES
 })
 
+export const init = (spread_number: string) => ({
+    type: actionTypes.INIT,
+    spread_number
+})
+
 export const setRunes = (runes: Array<object>) => ({
     type: actionTypes.RUNES_RECEIVED,
     payload: {
