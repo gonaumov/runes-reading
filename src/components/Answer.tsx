@@ -16,6 +16,7 @@ interface DispatchProps {
   setSelectedSpread: typeof setSelectedSpread
   getRunes: typeof getRunes
   getSpreads: typeof getSpreads
+  init: any
 }
 
 type Props = StateProps & DispatchProps & RouteComponentProps<{spreadId: string | undefined}, StaticContext, {}>
@@ -178,21 +179,17 @@ const Answer: React.FC<Props> = (props: Props) => {
    setSelectedSpread, 
             match, 
             getRunes, 
-            getSpreads
+            getSpreads,
+            init
   } = props
 
   useEffect(() => {
-    if (selectedRunes.length === 0) {
-      getSpreads()
-      getRunes()
-    }
-
     if(match.params.spreadId) {
-      setSelectedSpread(match.params.spreadId)
+      init(match.params.spreadId)
     } else {
-      setSelectedSpread('')
+      init('')
     }
-  }, [match,setSelectedSpread, selectedSpread, getRunes, getSpreads, selectedRunes])
+  }, [match, setSelectedSpread])
 
   return (
     <div className="container">
@@ -227,6 +224,7 @@ const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: Dis
       },
       getSpreads: () => (dispatch(getSpreads())),
       getRunes: () =>   (dispatch(getRunes())),
+      init: (spread_number: string) => (dispatch({type: 'INIT', spread_number}))
   }
 }
 
