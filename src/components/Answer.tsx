@@ -32,7 +32,7 @@ const renderRune = (rune: Rune | undefined): JSX.Element | null => {
     title={rune.rune_name}
     key={rune.rune_id}
     alt={rune.rune_name}
-    src={'../images/' + rune.rune_image}
+    src={'./images/' + rune.rune_image}
   />
   <p>
    {rune.rune_meaning}
