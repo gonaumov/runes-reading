@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/runes-reading/static/js/main.800f4336.chunk.js",
-    "main.js.map": "/runes-reading/static/js/main.800f4336.chunk.js.map",
+    "main.js": "/runes-reading/static/js/main.a6bf5c99.chunk.js",
+    "main.js.map": "/runes-reading/static/js/main.a6bf5c99.chunk.js.map",
     "runtime~main.js": "/runes-reading/static/js/runtime~main.e36b83f6.js",
     "runtime~main.js.map": "/runes-reading/static/js/runtime~main.e36b83f6.js.map",
     "static/css/2.df17843e.chunk.css": "/runes-reading/static/css/2.df17843e.chunk.css",
     "static/js/2.29b87cb5.chunk.js": "/runes-reading/static/js/2.29b87cb5.chunk.js",
     "static/js/2.29b87cb5.chunk.js.map": "/runes-reading/static/js/2.29b87cb5.chunk.js.map",
     "index.html": "/runes-reading/index.html",
-    "precache-manifest.5eade4d937747d3688c74820d548aca1.js": "/runes-reading/precache-manifest.5eade4d937747d3688c74820d548aca1.js",
+    "precache-manifest.d92d0c37d8ac4dff70f267e027af1f1c.js": "/runes-reading/precache-manifest.d92d0c37d8ac4dff70f267e027af1f1c.js",
     "service-worker.js": "/runes-reading/service-worker.js",
     "static/css/2.df17843e.chunk.css.map": "/runes-reading/static/css/2.df17843e.chunk.css.map"
   }
